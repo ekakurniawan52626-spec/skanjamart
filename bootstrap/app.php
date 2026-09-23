@@ -11,13 +11,15 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->trustProxies(at: '*');
+
         $middleware->alias([
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
         ]);
 
         $middleware->validateCsrfTokens(except: [
             'payment/notification',
-            'kurir/*', // halaman kurir memakai token rahasia di URL, bukan sesi login
+            'kurir/*',
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
