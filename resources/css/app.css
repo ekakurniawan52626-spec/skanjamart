@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    [x-cloak] {
+        display: none !important;
+    }
+
+    body {
+        @apply bg-canvas text-ink antialiased;
+        text-rendering: optimizeLegibility;
+    }
+
+    ::selection {
+        @apply bg-forest-100 text-forest-700;
+    }
+
+    :focus-visible {
+        outline: 2px solid #1F4536;
+        outline-offset: 2px;
+    }
+}
+
+@layer components {
+    /* Signature price tag: a small perforated ticket, torn-edge feel via dashed border + mono figures */
+    .price-tag {
+        @apply inline-flex items-center gap-1 font-mono text-forest-700 font-semibold;
+        position: relative;
+        padding-left: 0.6rem;
+    }
+    .price-tag::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.15em;
+        bottom: 0.15em;
+        border-left: 1.5px dashed theme('colors.brass.400');
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2 rounded-full bg-forest-500 px-5 py-2.5 text-sm font-semibold text-canvas shadow-softer transition hover:bg-forest-600 focus-visible:outline-forest-500;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center gap-2 rounded-full border border-forest-100 bg-white px-5 py-2.5 text-sm font-semibold text-forest-700 transition hover:border-forest-300 hover:bg-forest-50;
+    }
+
+    .btn-brass {
+        @apply inline-flex items-center justify-center gap-2 rounded-full bg-brass-500 px-5 py-2.5 text-sm font-semibold text-white shadow-softer transition hover:bg-brass-600;
+    }
+
+    .card-soft {
+        @apply rounded-2xl border border-forest-100/70 bg-white/80 shadow-softer backdrop-blur-sm;
+    }
+
+    .input-classic {
+        @apply block w-full rounded-xl border-ink-faint/40 bg-white text-ink shadow-sm focus:border-forest-500 focus:ring-forest-500;
+    }
+
+    .section-eyebrow {
+        @apply font-mono text-xs uppercase tracking-[0.2em] text-brass-600;
+    }
+
+    .pill {
+        @apply inline-flex items-center rounded-full px-3.5 py-1.5 text-sm font-medium transition;
+    }
+    .pill-active {
+        @apply bg-forest-500 text-canvas;
+    }
+    .pill-inactive {
+        @apply bg-white text-ink-muted border border-forest-100 hover:border-forest-300;
+    }
+}
