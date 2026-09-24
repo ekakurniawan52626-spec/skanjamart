@@ -12,6 +12,8 @@ class ChatLog extends Model
     {
         return [
             'answered' => 'boolean',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
         ];
     }
 
